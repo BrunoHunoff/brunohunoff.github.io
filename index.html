@@ -312,6 +312,21 @@
 
   .block { margin-top: clamp(2.5rem, 5vw, 3.5rem); }
 
+  /* O que o produto faz e o que eu faco sao coisas diferentes: lado a lado,
+     cada um sob o seu rotulo, nao se confundem numa lista so. */
+  .split {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(2rem, 5vw, 4rem);
+    margin-top: clamp(2rem, 4vw, 3rem);
+  }
+
+  .split > div { min-width: 0; }
+
+  @media (max-width: 760px) {
+    .split { grid-template-columns: 1fr; gap: 2rem; }
+  }
+
   /* ---------- badges ---------- */
 
   .badges {
@@ -542,11 +557,23 @@
           descrição em português.
         </p>
 
-        <ul class="points">
-          <li>Produto de ponta a ponta, <b>da arquitetura ao deploy</b>.</li>
-          <li>Saída em <b>DXF editável, PDF de proposta e modelo 3D</b>, a partir do parque de fôrmas de cada fábrica.</li>
-          <li><b>Gestão de marketing e tráfego pago.</b></li>
-        </ul>
+      </div>
+
+      <div class="split reveal">
+        <div>
+          <p class="label">O produto</p>
+          <ul class="points">
+            <li>Saída em <b>DXF editável, PDF de proposta e modelo 3D</b>.</li>
+            <li>Gerado a partir dos parâmetros de cada fábrica.</li>
+          </ul>
+        </div>
+        <div>
+          <p class="label">Minha atuação</p>
+          <ul class="points">
+            <li><b>Engenharia de ponta a ponta</b>, da arquitetura ao deploy.</li>
+            <li><b>Gestão de marketing e tráfego pago.</b></li>
+          </ul>
+        </div>
       </div>
 
       <div class="block reveal">

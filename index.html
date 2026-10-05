@@ -282,6 +282,103 @@
     margin: 0 0 2rem;
   }
 
+  /* Brand lockup: the Teigh mark keeps its own blue. It reads as a logo,
+     not as a second accent in the page palette. */
+  .lockup {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .lockup svg { width: 34px; height: auto; flex: none; }
+  .lockup h2 { margin: 0; }
+
+  /* Product shots */
+
+  /* The two shots have different native ratios (1.28 and 1.72). Weighting the
+     columns 1 : 1.25 lands them within ~8% of the same rendered height, so the
+     pair reads level without cropping either drawing. */
+  .shots {
+    display: grid;
+    grid-template-columns: 1fr 1.25fr;
+    gap: clamp(1rem, 2.5vw, 2rem);
+    align-items: start;
+    margin-top: 3.5rem;
+  }
+
+  .shot figure { margin: 0; }
+
+  .shot img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--line);
+    background: #fff;
+  }
+
+  /* The plan export is a multi-page sheet: trim the sliver of page two off
+     the bottom. Also brings the two shots to within ~2% of each other. */
+  .shot--plan img {
+    aspect-ratio: 1600 / 1135;
+    object-fit: cover;
+    object-position: top;
+  }
+
+  .shot figcaption {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 0.75rem;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 760px) {
+    .shots { grid-template-columns: 1fr; gap: 2rem; }
+  }
+
+  /* Visit band */
+
+  .visit {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem clamp(1.5rem, 4vw, 3rem);
+    border: 1px solid var(--line);
+    padding: clamp(1.25rem, 3vw, 1.75rem);
+    margin-top: 3rem;
+    transition: border-color 0.2s;
+  }
+
+  .visit:hover { border-color: color-mix(in srgb, var(--accent) 50%, var(--line)); }
+
+  .visit svg { width: 30px; height: auto; flex: none; }
+
+  .visit-copy { flex: 1 1 16rem; min-width: 0; }
+
+  .visit-copy b { display: block; font-size: 1.0625rem; font-weight: 600; }
+
+  .visit-copy span { font-size: 0.9375rem; color: var(--muted); }
+
+  .visit-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .visit-links a {
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 0.6rem 1.1rem;
+    border: 1px solid var(--line);
+    white-space: nowrap;
+    transition: border-color 0.2s, color 0.2s, transform 0.15s;
+  }
+
+  .visit-links a:hover { border-color: var(--accent); color: var(--accent); }
+  .visit-links a:active { transform: translateY(1px); }
+
   .prose { max-width: 62ch; }
   .prose p { margin: 0 0 1.25rem; }
   .prose p:last-child { margin-bottom: 0; }
@@ -507,7 +604,7 @@
     <a class="nav-name" href="#top">BRUNO&nbsp;HUNOFF</a>
     <nav class="nav-links">
       <a href="#teigh">Teigh</a>
-      <a href="#nda" data-secondary>Flozy e Synthesise</a>
+      <a href="#nda" data-secondary>Consulting.com</a>
       <a href="#antes" data-secondary>Antes disso</a>
       <a href="#contato">Contato</a>
       <button class="theme-btn" type="button" id="theme-btn" aria-label="Alternar tema claro e escuro">tema</button>
@@ -542,7 +639,7 @@
         <span>2026 ao presente</span>
       </div>
       <div class="index-item">
-        <b>Flozy e Synthesise AI</b>
+        <b>Consulting.com</b>
         <span>Engenharia de produto</span>
         <span>2025 a 2026</span>
       </div>
@@ -562,7 +659,13 @@
   <section id="teigh" class="band">
     <div class="wrap">
       <div class="reveal">
-        <h2>Teigh</h2>
+        <div class="lockup">
+          <svg viewBox="0 0 654 599" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <path d="M226.5 302.831C226.5 295.534 230.474 288.817 236.869 285.303L388.869 201.782C402.197 194.458 418.5 204.101 418.5 219.31V490.168C418.5 497.729 414.237 504.643 407.481 508.038L255.481 584.434C242.181 591.119 226.5 581.45 226.5 566.564V302.831Z" fill="#265AEC"/>
+            <path d="M112.71 18.5138C120.053 6.98228 132.778 0 146.449 0H636.167C643.977 0 648.773 8.55188 644.7 15.2154L537.425 190.715C535.608 193.687 532.376 195.5 528.892 195.5H18.2239C10.3315 195.5 5.54961 186.786 9.78904 180.128L112.71 18.5138Z" fill="#2559EE"/>
+          </svg>
+          <h2>Teigh</h2>
+        </div>
         <p class="meta">Founder &middot; junho de 2026 ao presente</p>
         <p class="lead-para">
           SaaS de IA que gera projetos de pré-moldados em DXF a partir de uma
@@ -591,6 +694,23 @@
           orçamento nunca divergir do que foi desenhado é uma propriedade testada, não uma
           intenção.
         </p>
+      </div>
+
+      <div class="shots reveal">
+        <div class="shot shot--plan">
+          <figure>
+            <img src="img/teigh-planta.webp" width="1600" height="1252" loading="lazy" decoding="async"
+                 alt="Planta de blocos gerada pela Teigh, com eixos, cotas e selo do projeto.">
+            <figcaption>Planta gerada pelo compilador, com eixos, cotas e selo.</figcaption>
+          </figure>
+        </div>
+        <div class="shot">
+          <figure>
+            <img src="img/teigh-cad.webp" width="1600" height="929" loading="lazy" decoding="async"
+                 alt="O DXF gerado aberto em software de CAD, mostrando cortes, plantas e vista 3D.">
+            <figcaption>O mesmo projeto em DXF, aberto no CAD: cortes, pavimentos e vista 3D.</figcaption>
+          </figure>
+        </div>
       </div>
 
       <div class="detail-grid reveal">
@@ -627,10 +747,19 @@
         </div>
       </div>
 
-      <div class="stack reveal" style="max-width: 62ch;">
-        <a href="https://teigh.com.br" rel="noopener">teigh.com.br</a>
-        &nbsp;&nbsp;&nbsp;
-        <a href="https://instagram.com/teigh.ia" rel="noopener">instagram.com/teigh.ia</a>
+      <div class="visit reveal">
+        <svg viewBox="0 0 654 599" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+          <path d="M226.5 302.831C226.5 295.534 230.474 288.817 236.869 285.303L388.869 201.782C402.197 194.458 418.5 204.101 418.5 219.31V490.168C418.5 497.729 414.237 504.643 407.481 508.038L255.481 584.434C242.181 591.119 226.5 581.45 226.5 566.564V302.831Z" fill="#265AEC"/>
+          <path d="M112.71 18.5138C120.053 6.98228 132.778 0 146.449 0H636.167C643.977 0 648.773 8.55188 644.7 15.2154L537.425 190.715C535.608 193.687 532.376 195.5 528.892 195.5H18.2239C10.3315 195.5 5.54961 186.786 9.78904 180.128L112.71 18.5138Z" fill="#2559EE"/>
+        </svg>
+        <div class="visit-copy">
+          <b>Teigh</b>
+          <span>Do pedido ao orçamento em minutos.</span>
+        </div>
+        <div class="visit-links">
+          <a href="https://teigh.com.br" rel="noopener">Ver o produto</a>
+          <a href="https://instagram.com/teigh.ia" rel="noopener">@teigh.ia</a>
+        </div>
       </div>
     </div>
   </section>
@@ -638,10 +767,11 @@
   <section id="nda">
     <div class="wrap">
       <div class="reveal">
-        <h2>Flozy e Synthesise AI</h2>
+        <h2>Consulting.com</h2>
         <p class="meta">Engenharia de produto &middot; novembro de 2025 a outubro de 2026</p>
         <p class="lead-para">
-          Dois produtos do ecossistema de Iman Gadzhi. Descrição limitada ao escopo
+          Escola de negócios online fundada por Sam Ovens e adquirida por Iman Gadzhi
+          em 2025. Trabalhei em dois produtos do grupo. Descrição limitada ao escopo
           técnico, por NDA.
         </p>
       </div>
@@ -691,7 +821,7 @@
     <div class="wrap">
       <div class="reveal">
         <h2>Antes disso</h2>
-        <p class="meta">2024 a 2025</p>
+        <p class="meta">2024 ao presente</p>
       </div>
 
       <div class="reveal">
@@ -714,7 +844,7 @@
         <div class="entry">
           <div class="entry-head">
             <h3>Dealerspace</h3>
-            <p>QA<br>abr. 2024 a out. 2025</p>
+            <p>QA<br>2024</p>
           </div>
           <div class="entry-body">
             <p>
@@ -742,6 +872,7 @@
         <a href="mailto:brunohunoff@gmail.com">brunohunoff@gmail.com</a>
         <a href="https://www.linkedin.com/in/bruno-hunoff/" rel="noopener">LinkedIn</a>
         <a href="https://github.com/BrunoHunoff" rel="noopener">GitHub</a>
+        <a href="https://instagram.com/bruno.hunoff" rel="noopener">@bruno.hunoff</a>
       </div>
     </div>
   </section>

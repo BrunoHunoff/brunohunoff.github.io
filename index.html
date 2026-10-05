@@ -314,9 +314,10 @@
 
   /* O que o produto faz e o que eu faco sao coisas diferentes: lado a lado,
      cada um sob o seu rotulo, nao se confundem numa lista so. */
+  /* O produto leva a coluna maior: e o que o leitor veio ver. */
   .split {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1.15fr 1fr;
     gap: clamp(2rem, 5vw, 4rem);
     margin-top: clamp(2rem, 4vw, 3rem);
   }
@@ -563,8 +564,10 @@
         <div>
           <p class="label">O produto</p>
           <ul class="points">
+            <li><b>Projeto gerado em segundos</b>, a partir de um pedido em linguagem simples.</li>
+            <li>A IA interpreta o pedido <b>com base em regra de engenharia</b>.</li>
+            <li><b>Projeto, quantitativos e orçamento</b> na mesma entrega.</li>
             <li>Saída em <b>DXF editável, PDF de proposta e modelo 3D</b>.</li>
-            <li>Gerado a partir dos parâmetros de cada fábrica.</li>
           </ul>
         </div>
         <div>
